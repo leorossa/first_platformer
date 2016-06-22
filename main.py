@@ -11,7 +11,7 @@ from pygame import *
 WIN_WIDTH = 800 #Ширина создаваемого окна
 WIN_HEIGHT = 640 # Высота
 DISPLAY = (WIN_WIDTH, WIN_HEIGHT) #группа для обозначения дисплея
-BACKGROUND_COLOR = "#004400"
+BACKGROUND_COLOR = "#f3f2f3"
 PLATFORM_WIDTH = 32
 PLATFORM_HEIGHT = 32
 PLATFORM_COLOR = "#FF6262"
