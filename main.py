@@ -4,6 +4,7 @@
 # Импортируем библиотеку pygame
 import pygame
 from pygame import *
+from player import *
 
 
 #Объявляем переменные
@@ -22,10 +23,12 @@ PLATFORM_COLOR = "#FF6262"
 def main():
     pygame.init() # Инициация PyGame, обязательная строчка
     screen = pygame.display.set_mode(DISPLAY) # Создаем окошко
-    pygame.display.set_caption("Super white") # Пишем в шапку
+    pygame.display.set_caption("Super whithe") # Пишем в шапку
     bg = Surface((WIN_WIDTH,WIN_HEIGHT)) # Создание видимой поверхности
                                          # будем использовать как фон
     bg.fill(Color(BACKGROUND_COLOR))     # Заливаем поверхность сплошным цветом
+    hero = Player(50,50) # Создаем героя по  координатам x и y
+    left = right = False # по умолчанию стоим
     level = [
        "----------------------------------",
        "-                                -",
@@ -51,12 +54,23 @@ def main():
        "-                                -",
        "-                                -",
        "----------------------------------"]
+    timer = pygame.time.Clock()
 
 
     while 1: # Основной цикл программы
+        timer.tick(60)
         for e in pygame.event.get(): # Обрабатываем события
             if e.type == QUIT:
                 raise SystemExit, "QUIT"
+            if e.type == KEYDOWN and e.key == K_LEFT:
+                left = True
+            if e.type == KEYDOWN and e.key == K_RIGHT:
+                right = True
+
+            if e.type == KEYUP and e.key == K_RIGHT:
+                right = False
+            if e.type == KEYUP and e.key == K_LEFT:
+                left = False
 
 
         screen.blit(bg, (0,0))      # Каждую итерацию необходимо всё перерисовывать
@@ -71,6 +85,8 @@ def main():
                 x += PLATFORM_WIDTH #блоки платформы ставятся на ширине блоков
             y += PLATFORM_HEIGHT    #то же самое и с высотой
             x = 0                   #на каждой новой строчке начинаем с нуля
+        hero.update(left, right) # Move
+        hero.draw(screen) # отображение
         pygame.display.update()     # обновление и вывод всех изменений на экран
 
 if __name__ == '__main__':
