@@ -22,7 +22,7 @@ PLATFORM_COLOR = "#FF6262"
 def main():
     pygame.init() # Инициация PyGame, обязательная строчка
     screen = pygame.display.set_mode(DISPLAY) # Создаем окошко
-    pygame.display.set_caption("Super whithe") # Пишем в шапку
+    pygame.display.set_caption("Super white") # Пишем в шапку
     bg = Surface((WIN_WIDTH,WIN_HEIGHT)) # Создание видимой поверхности
                                          # будем использовать как фон
     bg.fill(Color(BACKGROUND_COLOR))     # Заливаем поверхность сплошным цветом
